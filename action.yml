@@ -1,0 +1,26 @@
+name: Simple Commit Check
+description: Warn on bad pull request titles (too short, WIP, missing conventional type).
+author: Dmytro Paduchak
+branding:
+  icon: git-commit
+  color: blue
+inputs:
+  github-token:
+    description: Token to read PR data and post sticky comments.
+    required: false
+    default: ${{ github.token }}
+  fail-on:
+    description: "none = report only; medium or high = fail when findings match."
+    required: false
+    default: none
+  min-length:
+    description: Minimum PR title length.
+    required: false
+    default: "10"
+  require-conventional:
+    description: "true = require conventional-commit style title."
+    required: false
+    default: "false"
+runs:
+  using: node20
+  main: dist/index.js
